@@ -9,7 +9,6 @@ body{
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    /* background-color: aqua; */
 }
 h1{
     display: inherit;
@@ -36,8 +35,8 @@ h1{
     max-height: 20px;
     max-width: 20px;
     position:absolute;
-    top: 2px;
-    right: 5px;
+    top: 1px;
+    right: 10px;
 }
 button{
     border-radius: 5px;
@@ -55,12 +54,25 @@ button{
     border: none;
     color: aliceblue;
 }
+#task:hover{
+    background-color: rgb(61, 61, 231);
+}
 .elements{
     background-color: white;
     color: black;
 }
 .elements:hover{
     background-color: rgba(26, 1, 249, 0.2);
+}
+#toggle{
+    background-color: blue;
+    border-radius: 10px;
+    border: none;
+    height: 35px;
+    transform: translateY(13px);
+}
+#toggle:hover{
+    background-color: rgb(44, 44, 210);
 }
 #notes{
     display: inherit;
@@ -75,13 +87,27 @@ button{
     padding: 10px;
 }
 #add-icon{
+    display: flex;
     position: absolute;
-    top:calc(90%);
-    left: calc(90%);
+    top:calc(84%);
+    left: calc(87%);
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: aliceblue;
+    font-size: x-large;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#add-icon:hover{
+    background-color: rgb(85, 85, 239);
 }
 .show{
     display: block;
 }
 .checked{
     text-decoration: line-through;
+    color: darkgray;
 }

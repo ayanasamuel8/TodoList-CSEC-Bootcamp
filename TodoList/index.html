@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo-List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-content">
+        <h1>TODO LIST</h1>
+        <div id="navs">
+            <div id="search-bar">
+                <input type="search" id="search" placeholder="Search notes...">
+            <img src="place.jpg" alt="image" id="search-icon">
+            </div>
+            <select name="option" id="task">
+                <option class="elements">All</option>
+                <option class="elements">Complete</option>
+                <option class="elements">Incomplete</option>
+                
+            </select>
+            <!-- <ul class="dropdown">
+                <li class="elements">All</li>
+                <li class="elements">Complete</li>
+                <li class="elements">Incomplete</li>
+            </ul>
+            <button type="menu" id="list-all" onclick="show()"> choose</button> -->
+            <button type="button" id="toggle">ticon</button>
+        </div>
+        <div id="notes">
+            <ul id="list">
+                <div class="check">
+                    <input type="checkbox">
+                    <li class="note">NOTE #1</li>
+                </div>
+                <div class="check">
+                    <input type="checkbox">
+                    <li class="note checked">NOTE #2</li>
+                </div>
+                <div class="check">
+                    <input type="checkbox">
+                    <li class="note">NOTE #3</li>
+                </div>
+            </ul>
+        </div>
+        <img src="addimage.jpg" alt="add" id="add-icon">
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

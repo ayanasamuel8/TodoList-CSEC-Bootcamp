@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="main-content">
-        <h1>TODO LIST</h1>
+        <h1 id="text">TODO LIST</h1>
         <div id="navs">
             <div id="search-bar">
                 <input type="search" id="search" placeholder="Search notes...">
@@ -25,20 +25,30 @@
         <div id="notes">
             <ul id="list">
                 <div class="check">
-                    <input type="checkbox">
+                    <input type="checkbox" onclick="check()" class="check-box">
                     <li class="note">NOTE #1</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox">
-                    <li class="note checked">NOTE #2</li>
+                    <input type="checkbox" onclick="check()" class="check-box">
+                    <li class="note">NOTE #2</li>
                 </div>
                 <div class="check">
-                    <input type="checkbox">
+                    <input type="checkbox" onclick="check()" class="check-box">
                     <li class="note">NOTE #3</li>
                 </div>
             </ul>
         </div>
-        <span id="add-icon">+</span>  
+        <span id="add-icon" onclick="addTask()">+</span>  
+
+        <div id="add-note">
+            <textarea name="assnote" id="addnote" placeholder="add your note..."></textarea>
+            <div id="buttons">
+                <button onclick="cancel()">cancel</button>
+                <button onclick="save()">save</button>
+            </div>
+            
+        </div>
+
     </div>
     <script src="script.js"></script>
 </body>

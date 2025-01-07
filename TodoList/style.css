@@ -24,6 +24,7 @@ h1{
     height: 25px;
     border-radius: 5px;
     border-color: rgb(146, 57, 205);
+
 }
 #search:hover{
     border-color: blue;
@@ -53,6 +54,7 @@ button{
     border-radius: 5px;
     border: none;
     color: aliceblue;
+    cursor: pointer;
 }
 #task:hover{
     background-color: rgb(61, 61, 231);
@@ -60,6 +62,7 @@ button{
 .elements{
     background-color: white;
     color: black;
+    cursor: pointer;
 }
 .elements:hover{
     background-color: rgba(26, 1, 249, 0.2);
@@ -70,6 +73,7 @@ button{
     border: none;
     height: 35px;
     transform: translateY(13px);
+    cursor: pointer;
 }
 #toggle:hover{
     background-color: rgb(44, 44, 210);
@@ -89,8 +93,8 @@ button{
 #add-icon{
     display: flex;
     position: absolute;
-    top:calc(84%);
-    left: calc(87%);
+    top:70%;
+    left: 65%;
     background-color: blue;
     height: 50px;
     width: 50px;
@@ -110,4 +114,47 @@ button{
 .checked{
     text-decoration: line-through;
     color: darkgray;
+}
+.check{
+    cursor: pointer;
+}
+#add-note{
+    display: none;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 1px solid; */
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    background-color:aliceblue;
+
+    box-shadow: 1px 1px 10px 1px;
+}
+#addnote{
+    border: none;
+    margin: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    resize: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0.5px 0.5px 5px 0.5px;
+    background-color: aliceblue;
+}
+#buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#buttons button{
+    cursor: pointer;
+}
+#buttons button:hover{
+    background-color: rgb(69, 69, 218);
+}
+.darken{
+    z-index: 1;
+    background-color: rgb(26, 26, 27);
 }

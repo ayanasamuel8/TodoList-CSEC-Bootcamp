@@ -158,3 +158,6 @@ button{
     z-index: 1;
     background-color: rgb(26, 26, 27);
 }
+.rem{
+    display: none;
+}

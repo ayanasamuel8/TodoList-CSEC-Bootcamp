@@ -14,15 +14,15 @@
                 <input type="search" id="search" placeholder="Search notes...">
             <img src="https://img.icons8.com/?size=64&id=14079&format=png" alt="image" id="search-icon">
             </div>
-            <select name="option" id="task">
-                <option class="elements">All</option>
-                <option class="elements">Complete</option>
-                <option class="elements">Incomplete</option>
+            <select name="task" id="task">
+                <option class="elements" value="all" >All</option>
+                <option class="elements" value="complete" >Complete</option>
+                <option class="elements" value="incomplete" >Incomplete</option>
                 
             </select>
             <img src="/darktheme.png" alt="toggle" id="toggle">
         </div>
-        <div id="notes">
+        <div id="notes" class="notess">
             <ul id="list">
                 <div class="check">
                     <input type="checkbox" onclick="check()" class="check-box">

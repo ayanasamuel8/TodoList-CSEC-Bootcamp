@@ -50,3 +50,40 @@ function save(){
     add.style.display='none';
     body.classList.remove('darken');
 }
+function all(){
+    let notes=document.getElementsByClassName('check');
+    for(let note of notes){
+        note.style.display='flex';
+    }
+}
+document.addEventListener('click',()=>{
+    let selected=document.getElementById('task').selectedIndex;
+    let option=document.getElementById('task').options[selected];
+    console.log(option.value);
+    if(option.value==='all'){
+        all();
+    }else if(option.value==='complete'){
+        complete();
+    }else{
+        incomplete();
+    }
+    });
+
+
+function complete(){
+    let notes=document.getElementsByClassName('check');
+    for(let note of notes){
+        let fistchild=note.firstChild.nextElementSibling;
+        console.log( fistchild ,fistchild.checked)
+        if(fistchild.checked !==true) note.style.display='none';
+        else note.style.display='flex';
+    }
+}
+function incomplete(){
+    let notes=document.getElementsByClassName('check');
+    for(let note of notes){
+        let fistchild=note.firstChild.nextElementSibling;
+        if(fistchild.checked !==true) note.style.display='flex';
+        else note.style.display='none';
+    }
+}

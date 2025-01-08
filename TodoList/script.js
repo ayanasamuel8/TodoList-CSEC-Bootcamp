@@ -10,6 +10,12 @@ function check(){
         }
     }
 }
+function toggletoDark(){
+    let body=document.body;
+    body.classList.toggle('dark-mode');
+    let addNote=document.querySelector('#add-note');
+    addNote.classList.toggle('dark-mode');
+}
 function addTask(){
     let add=document.getElementById('add-note');
     let body=document.body;
@@ -29,6 +35,8 @@ function save(){
     let newnote=document.createElement('div');
     newnote.classList.add('check');
     let text=document.querySelector('#addnote').value;
+    console.log(text);
+    if(text!=''){
     document.querySelector('#addnote').value='';
 
     let input=document.createElement('input');
@@ -44,7 +52,7 @@ function save(){
     newnote.appendChild(note);
 
     ul.appendChild(newnote);
-
+    }
     let add=document.getElementById('add-note');
     let body=document.body;
     add.style.display='none';

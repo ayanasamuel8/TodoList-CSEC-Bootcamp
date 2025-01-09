@@ -1,3 +1,16 @@
+document.getElementById('task').addEventListener('click',()=>{
+    let selected=document.getElementById('task').selectedIndex;
+    let option=document.getElementById('task').options[selected];
+    console.log(option.value);
+    if(option.value==='all'){
+        all();
+    }else if(option.value==='complete'){
+        complete();
+    }else{
+        incomplete();
+    }
+    });
+
 function check(){
     console.log('pressed');
     let checked=document.getElementsByClassName('check-box');
@@ -73,18 +86,6 @@ function all(){
         note.style.display='flex';
     }
 }
-document.addEventListener('click',()=>{
-    let selected=document.getElementById('task').selectedIndex;
-    let option=document.getElementById('task').options[selected];
-    console.log(option.value);
-    if(option.value==='all'){
-        all();
-    }else if(option.value==='complete'){
-        complete();
-    }else{
-        incomplete();
-    }
-    });
 
 
 function complete(){
@@ -102,5 +103,21 @@ function incomplete(){
         let fistchild=note.firstChild.nextElementSibling;
         if(fistchild.checked !==true) note.style.display='flex';
         else note.style.display='none';
+    }
+}
+
+function search(){
+    let search=document.getElementById('search').value;
+    search=search.toLowerCase();
+    console.log(search);
+    let notes=document.getElementsByClassName('note');
+    for(let note of notes){
+        console.log(note.parentNode);
+        let str=note.innerHTML.toLowerCase();
+        if(str.startsWith(search)){
+            note.parentNode.style.display='flex';
+        }else{
+            note.parentNode.style.display='none';
+        }
     }
 }

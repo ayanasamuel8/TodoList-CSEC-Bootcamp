@@ -15,6 +15,15 @@ function toggletoDark(){
     body.classList.toggle('dark-mode');
     let addNote=document.querySelector('#add-note');
     addNote.classList.toggle('dark-mode');
+    if(addNote.classList.contains('dark-mode')){
+        addNote.style.backgroundColor='black';
+        document.getElementById('addnote').style.backgroundColor='black';
+        document.getElementById('addnote').style.color='white';
+    }else{
+        addNote.style.backgroundColor='aliceblue';
+        document.getElementById('addnote').style.backgroundColor='aliceblue';
+        document.getElementById('addnote').style.color='black';
+    }
 }
 function addTask(){
     let add=document.getElementById('add-note');

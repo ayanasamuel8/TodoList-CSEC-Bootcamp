@@ -98,8 +98,19 @@ button{
     display: inherit;
     justify-content: center;
 }
+.note{
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+}
 #list{
+    position: fixed;
     list-style: none;
+    max-width: 50%;
+    overflow-y: auto;
+}
+#list:last-child{
+    display: 'none';
 }
 .check{
     display: flex;

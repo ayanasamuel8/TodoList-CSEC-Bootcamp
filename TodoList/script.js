@@ -1,19 +1,29 @@
-let notes=[
-    {
-        content:'NOTE #1',
-        status:'pending'
-    },
-    {
-        content:'NOTE #2',
-        status:'pending'
-    },
-    {
-        content:'NOTE #3',
-        status:'pending'
-    }
-]
-
-function rander(){
+// to get notes array form local storage for after page reload accessing
+let notes=JSON.parse(localStorage.getItem('notes'));
+//checking if it's for first time
+if(!notes){
+    notes=[
+        {
+            content:'NOTE #1',
+            status:'pending'
+        },
+        {
+            content:'NOTE #2',
+            status:'pending'
+        },
+        {
+            content:'NOTE #3',
+            status:'pending'
+        }
+    ]
+    localStorage.setItem('notes',JSON.stringify(notes));
+}else{//else load from the last time
+    notes=JSON.parse(localStorage.getItem('notes'));
+}
+let searchbar=document.getElementById('search');
+searchbar.addEventListener('input',search);
+function rander(array){
+    localStorage.setItem('current',JSON.stringify(array));
     let ulElement=document.getElementById('list');
     ulElement.innerHTML='';
     for(let i=0;i<notes.length;i++){
@@ -27,7 +37,13 @@ function rander(){
 
         let image=document.createElement('img');
         image.src='delete.png';
+        image.alt='delete'
         image.setAttribute('onclick','del(this.parentNode.id)');
+
+        let edit=document.createElement('img');
+        edit.src-'edit.png';
+        edit.alt='edit';
+        edit.setAttribute('onclick','edit(this)');
 
         let note=document.createElement('div');
         note.classList.add('note');
@@ -36,49 +52,32 @@ function rander(){
             input.checked=true;
             note.classList.add('checked');
         }
-
-        newnote.appendChild(input);
-        newnote.appendChild(note);
-
-        ulElement.appendChild(newnote);
+        if(array.includes(notes[i].status)){
+            newnote.appendChild(input);
+            newnote.appendChild(note);
+            newnote.appendChild(edit);
+            newnote.appendChild(image);
+            ulElement.appendChild(newnote);
+            ulElement.appendChild(document.createElement('hr'));
+        }
     }
 }
-
+//for window refresh loading
 document.addEventListener('DOMContentLoaded',()=>{
-    let ulElement=document.getElementById('list');
-    for(let i=0;i<notes.length;i++){
-        let newnote=document.createElement('li');
-        newnote.classList.add('check');
-        newnote.id=i;
-
-        let input=document.createElement('input');
-        input.type='checkbox';
-        input.setAttribute('onclick','check(this)');
-
-        let image=document.createElement('img');
-        image.src='delete.png';
-        image.setAttribute('onclick','del(this.parentNode.id)');
-
-        let note=document.createElement('div');
-        note.classList.add('note');
-        note.innerHTML=notes[i].content;
-        if(notes[i].status==='completed'){
-            input.checked=true;
-            note.classList.add('checked');
-        }
-
-        newnote.appendChild(input);
-        newnote.appendChild(note);
-
-        ulElement.appendChild(newnote);
-    }
+   rander(['pending','completed']);
+   let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
 });
+//to close the pop up when some other place is clicked
 document.getElementById('taskdiv').addEventListener('click',(event)=>{
     let add=document.getElementById('add-note');
-    add.style.display='none';
+    if(!add.contains(event.target)){
+        add.style.display='none';
     document.getElementById('taskdiv').style.display='none';
     document.querySelector('#addnote').value='';
+    }
 });
+//to call the drop downs
 document.getElementById('task').addEventListener('click',()=>{
     let selected=document.getElementById('task').selectedIndex;
     let option=document.getElementById('task').options[selected];
@@ -91,7 +90,7 @@ document.getElementById('task').addEventListener('click',()=>{
         incomplete();
     }
     });
-
+//for checking the check-box
 function check(event){
     console.log(notes[event.parentNode.id]);
     let note=event.nextElementSibling;
@@ -103,6 +102,7 @@ function check(event){
     }
     console.log(notes[event.parentNode.id]);
 }
+//to togle between dark and light
 function toggletoDark(){
     let body=document.body;
     body.classList.toggle('dark-mode');
@@ -122,11 +122,13 @@ function toggletoDark(){
         document.getElementById('search').style.color='darkgray';
     }
 }
+//for note model pop up
 function addTask(){
     document.getElementById('taskdiv').style.display='flex';
     let add=document.getElementById('add-note');
     add.style.display='flex';
 }
+//for canceling the add note modem
 function cancel(){
     let add=document.getElementById('add-note');
     add.style.display='none';
@@ -139,6 +141,7 @@ function save(){
     let newnote=document.createElement('div');
     newnote.classList.add('check');
     let text=document.querySelector('#addnote').value;
+    document.querySelector('#addnote').value='';
     console.log(text);
     if(text!=''){
         let newnote=document.createElement('li');
@@ -151,63 +154,84 @@ function save(){
         input.type='checkbox';
         input.setAttribute('onclick','check(this)');
 
+        let image=document.createElement('img');
+        image.src='delete.png';
+        image.alt='delete'
+        image.setAttribute('onclick','del(this.parentNode.id)');
+
+        let edit=document.createElement('img');
+        edit.src-'edit.png';
+        edit.alt='edit';
+        edit.setAttribute('onclick','edit(this)');
+
         let note=document.createElement('div');
         note.classList.add('note');
         note.innerHTML=notes[notes.length-1].content;
 
         newnote.appendChild(input);
         newnote.appendChild(note);
-
+        newnote.appendChild(edit);
+        newnote.appendChild(image);
+        ulElement.appendChild(document.createElement('hr'));
         ulElement.appendChild(newnote);
     }
+    localStorage.setItem('notes',JSON.stringify(notes));
+    console.log(notes);
     let add=document.getElementById('add-note');
     add.style.display='none';
     document.getElementById('taskdiv').style.display='none';
 }
+
+//for the drop downs
 function all(){
-    let notes=document.getElementsByClassName('check');
-    for(let note of notes){
-        note.style.display='flex';
-    }
+    rander(['pending','completed']);
+    let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
 }
-
-
 function complete(){
-    let notes=document.getElementsByClassName('check');
-    for(let note of notes){
-        let fistchild=note.firstChild.nextElementSibling;
-        console.log( fistchild ,fistchild.checked)
-        if(fistchild.checked !==true) note.style.display='none';
-        else note.style.display='flex';
-    }
+    rander(['completed']);
+    let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
 }
 function incomplete(){
-    let notes=document.getElementsByClassName('check');
-    for(let note of notes){
-        let fistchild=note.firstChild.nextElementSibling;
-        if(fistchild.checked !==true) note.style.display='flex';
-        else note.style.display='none';
-    }
+    rander(['pending']);
+    let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
 }
-
+//for search
 function search(){
     let search=document.getElementById('search').value;
     search=search.toLowerCase();
-    console.log(search);
     let notes=document.getElementsByClassName('note');
     for(let note of notes){
         console.log(note.parentNode);
         let str=note.innerHTML.toLowerCase();
         if(str.startsWith(search)){
             note.parentNode.style.display='flex';
+            note.parentNode.nextElementSibling.style.display='block';
         }else{
             note.parentNode.style.display='none';
+            if(note.parentNode.previousElementSibling)
+                note.parentNode.previousElementSibling.style.display='none';
         }
     }
+    let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
 }
-
+//for delete
 function del(index){
-    console.log(index);
-    let li=document.getElementsById(index);
-    document.getElementById('list').removeChild(li);
+    notes.splice(index,1);
+    localStorage.setItem('notes',JSON.stringify(notes));
+    rander(JSON.parse(localStorage.getItem('current')));
+    let ulElement=document.getElementById('list');
+   ulElement.lastChild.style.display='none';
+}
+//for editing the note
+function edit(index){
+    let note=index.previousElementSibling;
+    let text=note.innerHTML;
+    let addnote=document.getElementById('addnote');
+    addnote.value=text;
+    addTask();
+    del(index.parentNode.id);
 }

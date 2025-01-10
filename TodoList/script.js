@@ -1,3 +1,84 @@
+let notes=[
+    {
+        content:'NOTE #1',
+        status:'pending'
+    },
+    {
+        content:'NOTE #2',
+        status:'pending'
+    },
+    {
+        content:'NOTE #3',
+        status:'pending'
+    }
+]
+
+function rander(){
+    let ulElement=document.getElementById('list');
+    ulElement.innerHTML='';
+    for(let i=0;i<notes.length;i++){
+        let newnote=document.createElement('li');
+        newnote.classList.add('check');
+        newnote.id=i;
+
+        let input=document.createElement('input');
+        input.type='checkbox';
+        input.setAttribute('onclick','check(this)');
+
+        let image=document.createElement('img');
+        image.src='delete.png';
+        image.setAttribute('onclick','del(this.parentNode.id)');
+
+        let note=document.createElement('div');
+        note.classList.add('note');
+        note.innerHTML=notes[i].content;
+        if(notes[i].status==='completed'){
+            input.checked=true;
+            note.classList.add('checked');
+        }
+
+        newnote.appendChild(input);
+        newnote.appendChild(note);
+
+        ulElement.appendChild(newnote);
+    }
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    let ulElement=document.getElementById('list');
+    for(let i=0;i<notes.length;i++){
+        let newnote=document.createElement('li');
+        newnote.classList.add('check');
+        newnote.id=i;
+
+        let input=document.createElement('input');
+        input.type='checkbox';
+        input.setAttribute('onclick','check(this)');
+
+        let image=document.createElement('img');
+        image.src='delete.png';
+        image.setAttribute('onclick','del(this.parentNode.id)');
+
+        let note=document.createElement('div');
+        note.classList.add('note');
+        note.innerHTML=notes[i].content;
+        if(notes[i].status==='completed'){
+            input.checked=true;
+            note.classList.add('checked');
+        }
+
+        newnote.appendChild(input);
+        newnote.appendChild(note);
+
+        ulElement.appendChild(newnote);
+    }
+});
+document.getElementById('taskdiv').addEventListener('click',(event)=>{
+    let add=document.getElementById('add-note');
+    add.style.display='none';
+    document.getElementById('taskdiv').style.display='none';
+    document.querySelector('#addnote').value='';
+});
 document.getElementById('task').addEventListener('click',()=>{
     let selected=document.getElementById('task').selectedIndex;
     let option=document.getElementById('task').options[selected];
@@ -11,17 +92,16 @@ document.getElementById('task').addEventListener('click',()=>{
     }
     });
 
-function check(){
-    console.log('pressed');
-    let checked=document.getElementsByClassName('check-box');
-    for(let check of checked){
-        let note=check.nextElementSibling;
-        if(check.checked){
-            note.classList.add('checked');
-        }else{
-            note.classList.remove('checked');
-        }
+function check(event){
+    console.log(notes[event.parentNode.id]);
+    let note=event.nextElementSibling;
+    note.classList.toggle('checked');
+    if(event.checked){
+        notes[event.parentNode.id].status='completed';
+    }else{
+        notes[event.parentNode.id].status='pending';
     }
+    console.log(notes[event.parentNode.id]);
 }
 function toggletoDark(){
     let body=document.body;
@@ -32,53 +112,57 @@ function toggletoDark(){
         addNote.style.backgroundColor='black';
         document.getElementById('addnote').style.backgroundColor='black';
         document.getElementById('addnote').style.color='white';
+        document.getElementById('search').style.backgroundColor='black';
+        document.getElementById('search').style.color='white';
     }else{
         addNote.style.backgroundColor='aliceblue';
         document.getElementById('addnote').style.backgroundColor='aliceblue';
         document.getElementById('addnote').style.color='black';
+        document.getElementById('search').style.backgroundColor='white';
+        document.getElementById('search').style.color='darkgray';
     }
 }
 function addTask(){
+    document.getElementById('taskdiv').style.display='flex';
     let add=document.getElementById('add-note');
-    let body=document.body;
     add.style.display='flex';
-    body.classList.add('darken');
 }
 function cancel(){
     let add=document.getElementById('add-note');
-    let body=document.body;
     add.style.display='none';
-    body.classList.remove('darken');
+    document.getElementById('taskdiv').style.display='none';
     document.querySelector('#addnote').value='';
 }
 function save(){
-    let ul=document.querySelector('#list');
+    let ulElement=document.querySelector('#list');
 
     let newnote=document.createElement('div');
     newnote.classList.add('check');
     let text=document.querySelector('#addnote').value;
     console.log(text);
     if(text!=''){
-    document.querySelector('#addnote').value='';
+        let newnote=document.createElement('li');
+        newnote.classList.add('check');
+        newnote.id=notes.length;
 
-    let input=document.createElement('input');
-    input.type='checkbox';
-    input.setAttribute('onclick','check()');
-    input.classList.add('check-box');
+        notes.push({content:text,status:'pending'})
 
-    let note=document.createElement('li');
-    note.classList.add('note');
-    note.innerHTML=text;
+        let input=document.createElement('input');
+        input.type='checkbox';
+        input.setAttribute('onclick','check(this)');
 
-    newnote.appendChild(input);
-    newnote.appendChild(note);
+        let note=document.createElement('div');
+        note.classList.add('note');
+        note.innerHTML=notes[notes.length-1].content;
 
-    ul.appendChild(newnote);
+        newnote.appendChild(input);
+        newnote.appendChild(note);
+
+        ulElement.appendChild(newnote);
     }
     let add=document.getElementById('add-note');
-    let body=document.body;
     add.style.display='none';
-    body.classList.remove('darken');
+    document.getElementById('taskdiv').style.display='none';
 }
 function all(){
     let notes=document.getElementsByClassName('check');
@@ -120,4 +204,10 @@ function search(){
             note.parentNode.style.display='none';
         }
     }
+}
+
+function del(index){
+    console.log(index);
+    let li=document.getElementsById(index);
+    document.getElementById('list').removeChild(li);
 }

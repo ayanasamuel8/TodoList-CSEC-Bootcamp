@@ -24,22 +24,31 @@
         </div>
         <div id="notes" class="notess">
             <ul id="list">
-                <div class="check">
+                <!-- <li class="check" id="1">
                     <input type="checkbox" onclick="check()" class="check-box">
-                    <li class="note">NOTE #1</li>
-                </div>
-                <div class="check">
+                    <div class="note">NOTE #1</div>
+                    <img src="edit" alt="edit" class="edit" onclick="edit(this.parentNode.id)">
+                    <img src="delete" alt="delete" class="delete" onclick="del(this.parentNode.id)">
+                </li>
+                <hr>
+                <li class="check" id="2">
                     <input type="checkbox" onclick="check()" class="check-box">
-                    <li class="note">NOTE #2</li>
-                </div>
-                <div class="check">
+                    <div class="note">NOTE #2</div>
+                    <img src="edit" alt="edit" class="edit" onclick="edit(this.parentNode.id)">
+                    <img src="delete" alt="delete" class="delete" onclick="del(this.parentNode.id)">
+                </li>
+                <hr>
+                <li class="check" id="3">
                     <input type="checkbox" onclick="check()" class="check-box">
-                    <li class="note">NOTE #3</li>
-                </div>
+                    <div class="note">NOTE #3</div>
+                    <img src="edit" alt="edit" class="edit" onclick="edit(this.parentNode.id)">
+                    <img src="delete" alt="delete" class="delete" onclick="del(this)">
+                </li> -->
             </ul>
         </div>
         <span id="add-icon" onclick="addTask()">+</span>  
-
+    </div>
+    <div id="taskdiv">
         <div id="add-note">
             <textarea name="assnote" id="addnote" placeholder="add your note..."></textarea>
             <div id="buttons">
@@ -48,7 +57,6 @@
             </div>
             
         </div>
-
     </div>
     <script src="script.js"></script>
 </body>

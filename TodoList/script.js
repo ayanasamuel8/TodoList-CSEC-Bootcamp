@@ -233,16 +233,15 @@ function search(){
     let notes=document.getElementsByClassName('note');
     let found=false;
     for(let note of notes){
-        console.log(note.parentNode);
         let str=note.innerHTML.toLowerCase();
         if(str.startsWith(search)){
             found=true;
-            note.parentNode.style.display='flex';
-            note.parentNode.nextElementSibling.style.display='block';
+            note.parentNode.parentNode.style.display='flex';
+            note.parentNode.parentNode.nextElementSibling.style.display='block';
         }else{
-            note.parentNode.style.display='none';
-            if(note.parentNode.previousElementSibling)
-                note.parentNode.previousElementSibling.style.display='none';
+            note.parentNode.parentNode.style.display='none';
+            if(note.parentNode.parentNode.previousElementSibling)
+                note.parentNode.parentNode.previousElementSibling.style.display='none';
         }
     }
     if(!found){

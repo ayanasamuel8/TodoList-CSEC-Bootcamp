@@ -22,6 +22,10 @@
             </select>
             <img src="/darktheme.png" alt="toggle" id="toggle" onclick="toggletoDark()">
         </div>
+        <div id="empty">
+            <img src="/lightempty.png" alt="imgae">
+            <p>Empty....</p>
+        </div>
         <div id="notes" class="notess">
             <ul id="list">
                 <!-- <li class="check" id="1">
@@ -50,9 +54,10 @@
     </div>
     <div id="taskdiv">
         <div id="add-note">
+            <h1>NEW NOTE</h1>
             <textarea name="assnote" id="addnote" placeholder="add your note..."></textarea>
             <div id="buttons">
-                <button onclick="cancel()">cancel</button>
+                <button class="cancel" onclick="cancel()">cancel</button>
                 <button onclick="save()">save</button>
             </div>
             

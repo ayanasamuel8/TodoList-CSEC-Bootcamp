@@ -1,0 +1,13 @@
+#empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 30%;
+    background-color: rgb(250, 248, 248);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#empty img{
+    max-width: 70%;
+    max-height: 70%;
+}

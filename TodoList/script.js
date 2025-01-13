@@ -123,22 +123,27 @@ function toggletoDark(){
     let addNote=document.querySelector('#add-note');
     addNote.classList.toggle('dark-mode');
     if(addNote.classList.contains('dark-mode')){
-        addNote.style.backgroundColor='black';
-        document.getElementById('addnote').style.backgroundColor='black';
+        addNote.style.backgroundColor='rgb(37,37,37)';
+        document.getElementById('addnote').style.backgroundColor='rgb(37,37,37)';
         document.getElementById('addnote').style.color='white';
-        document.getElementById('search').style.backgroundColor='black';
+        document.getElementById('search').style.backgroundColor='rgb(37,37,37)';
         document.getElementById('search').style.color='white';
-        document.getElementsByClassName('cancel')[0].style.backgroundColor='black';
-        // document.getElementById('check--box').style.accentColor='black';
+        document.getElementsByClassName('cancel')[0].style.backgroundColor='rgb(37,37,37)';
+        document.getElementById('empty-image').src='/darkempty.png';
+        document.getElementById('check--box').style.accentColor='rgb(37,37,37)';
+        document.getElementById('empty').style.backgroundColor='rgb(37,37,37)';
         console.log(document.getElementById('check--box'));
     }else{
         addNote.style.backgroundColor='aliceblue';
         document.getElementById('addnote').style.backgroundColor='aliceblue';
-        document.getElementById('addnote').style.color='black';
-        document.getElementById('search').style.backgroundColor='white';
+        document.getElementById('addnote').style.color='rgb(37,37,37)';
+        document.getElementById('search').style.backgroundColor='rgb(250, 248, 248)';
         document.getElementById('search').style.color='darkgray';
-        document.getElementsByClassName('cancel')[0].style.backgroundColor='white';
-        document.getElementById('check--box').style.backgroundColor='white';
+        document.getElementsByClassName('cancel')[0].style.backgroundColor='rgb(250, 248, 248)';
+        document.getElementById('check--box').style.backgroundColor='rgb(250, 248, 248)';
+        document.getElementById('empty').style.backgroundColor='rgb(250, 248, 248)';
+        document.getElementById('empty-image').src='/lightempty.png';
+
     }
 }
 //for note model pop up

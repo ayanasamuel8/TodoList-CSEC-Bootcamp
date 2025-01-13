@@ -9,7 +9,7 @@ hr{
 }
 
 .dark-mode{
-    background-color: black;
+    background-color: rgb(37,37,37);
     color:white;
 }
 #taskdiv{
@@ -81,7 +81,7 @@ button{
 }
 .elements{
     background-color: rgb(250, 248, 248);
-    color: black;
+    color: rgb(37,37,37);
     cursor: pointer;
 }
 .elements:hover{
@@ -221,7 +221,7 @@ button{
     border: 2px solid #6c63ff;
 }
 .black{
-    background-color: black;
+    background-color: rgb(37,37,37);
     color: #6c63ff;
     border: 2px solid #6c63ff;
 }
